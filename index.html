@@ -125,13 +125,15 @@
       .cta {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        flex-direction: column;
+        justify-content: center;
         gap: 30px;
         margin: 4px 0 82px;
         padding: 39px 43px;
         border: 1px solid rgba(198,243,107,.22);
         border-radius: 12px;
         background: radial-gradient(ellipse at 15% 50%, rgba(198,243,107,.1), transparent 58%), #171c1c;
+        text-align: center;
       }
 
       .cta h2 { margin: 0 0 8px; font-size: clamp(25px, 3vw, 34px); letter-spacing: -.05em; }
@@ -153,7 +155,7 @@
         .features { grid-template-columns: 1fr; }
         .feature { min-height: auto; }
         .feature h3 { margin-top: 18px; }
-        .cta { align-items: start; flex-direction: column; margin-bottom: 58px; padding: 27px 24px; }
+        .cta { margin-bottom: 58px; padding: 27px 24px; }
       }
 
       @media (prefers-reduced-motion: reduce) {

@@ -3,18 +3,18 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#101315">
-    <meta name="description" content="Uma experiência para transformar boas ideias em projetos que fazem a diferença.">
-    <title>Hackathon — Ideias em movimento</title>
+    <meta name="theme-color" content="#060914">
+    <meta name="description" content="Explore o desconhecido. Uma jornada além da órbita, rumo ao próximo horizonte.">
+    <title>Hackathon — Explorando o universo</title>
     <style>
       :root {
         color-scheme: dark;
-        --background: #101315;
-        --surface: #191e20;
-        --text: #f2f2eb;
-        --muted: #a5ada8;
-        --accent: #c6f36b;
-        --line: rgba(242, 242, 235, .14);
+        --background: #060914;
+        --surface: #0e1428;
+        --text: #eef2ff;
+        --muted: #9aa6c7;
+        --accent: #7fd6ff;
+        --line: rgba(238, 242, 255, .14);
       }
 
       * { box-sizing: border-box; }
@@ -23,13 +23,17 @@
 
       body {
         margin: 0;
-        background: var(--background);
+        background: radial-gradient(ellipse at 20% 0%, #14204a 0%, transparent 55%), radial-gradient(ellipse at 90% 60%, #2a1450 0%, transparent 50%), var(--background);
+        background-attachment: fixed;
         color: var(--text);
         font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         -webkit-font-smoothing: antialiased;
       }
 
       a { color: inherit; text-decoration: none; }
+
+      #starfield { position: fixed; inset: 0; z-index: 0; width: 100%; height: 100%; pointer-events: none; }
+      .topbar, main, footer { position: relative; z-index: 1; }
 
       .shell { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
 
@@ -62,7 +66,7 @@
         transition: transform .2s ease, background .2s ease;
       }
 
-      .button:hover { transform: translateY(-2px); background: #d5ff83; }
+      .button:hover { transform: translateY(-2px); background: #b0e8ff; }
       .button .arrow { font-size: 17px; }
       .button-outline { background: transparent; color: var(--text); border-color: var(--line); }
       .button-outline:hover { background: var(--surface); }
@@ -84,7 +88,7 @@
       .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 31px; }
       .social-proof { display: flex; align-items: center; gap: 13px; margin-top: 38px; color: var(--muted); font-size: 12px; }
       .avatars { display: flex; padding-left: 4px; }
-      .avatar { width: 28px; height: 28px; margin-left: -4px; display: grid; place-items: center; border: 2px solid var(--background); border-radius: 50%; background: #354334; color: var(--accent); font-size: 9px; font-weight: 800; }
+      .avatar { width: 28px; height: 28px; margin-left: -4px; display: grid; place-items: center; border: 2px solid var(--background); border-radius: 50%; background: #1c2a55; color: var(--accent); font-size: 9px; font-weight: 800; }
 
       .visual {
         position: relative;
@@ -95,15 +99,28 @@
         border: 1px solid var(--line);
         border-radius: 16px;
         background:
-          radial-gradient(ellipse at 55% 45%, rgba(198, 243, 107, .13), transparent 43%),
-          linear-gradient(145deg, #1a2020, #131718 70%);
+          radial-gradient(ellipse at 55% 45%, rgba(127, 214, 255, .13), transparent 43%),
+          linear-gradient(145deg, #141b3a, #080c1c 70%);
       }
 
-      .visual::before, .visual::after { position: absolute; border: 1px solid rgba(198, 243, 107, .18); border-radius: 50%; content: ""; }
+      .visual::before, .visual::after { position: absolute; border: 1px solid rgba(127, 214, 255, .18); border-radius: 50%; content: ""; }
       .visual::before { width: 290px; height: 290px; }
       .visual::after { width: 210px; height: 210px; }
-      .orb { position: relative; z-index: 1; width: 126px; height: 126px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.45); border-radius: 35px; background: linear-gradient(145deg, #d7ff8b, #9dc849); box-shadow: 0 0 90px rgba(198,243,107,.25), inset 0 1px 1px rgba(255,255,255,.8); color: #182016; font-size: 54px; transform: rotate(-9deg); }
-      .float-card { position: absolute; z-index: 2; padding: 13px 15px; border: 1px solid var(--line); border-radius: 10px; background: rgba(25,30,32,.88); box-shadow: 0 15px 45px rgba(0,0,0,.22); backdrop-filter: blur(12px); }
+      .orb { position: relative; z-index: 1; width: 126px; height: 126px; display: grid; place-items: center; border: 0; border-radius: 50%; background: radial-gradient(circle at 32% 30%, #ffd9a0, #ff8a4c 45%, #7a2a5e 100%); box-shadow: 0 0 90px rgba(255,138,76,.35), inset -14px -10px 26px rgba(20,5,40,.55); cursor: pointer; transition: transform .3s ease; padding: 0; }
+      .orb:hover { transform: scale(1.06); }
+      .orb::after { position: absolute; width: 190px; height: 34px; border: 3px solid rgba(255,217,160,.55); border-radius: 50%; content: ""; transform: rotate(-18deg); }
+      .orbit { position: absolute; z-index: 1; width: 290px; height: 290px; border-radius: 50%; animation: spin 14s linear infinite; pointer-events: none; }
+      .orbit-small { width: 210px; height: 210px; animation-duration: 8s; animation-direction: reverse; }
+      .moon { position: absolute; top: -7px; left: 50%; width: 14px; height: 14px; margin-left: -7px; border-radius: 50%; background: #dfe6ff; box-shadow: 0 0 14px #fff; }
+      .orbit-small .moon { width: 10px; height: 10px; background: var(--accent); box-shadow: 0 0 14px var(--accent); }
+      .rocket { position: absolute; z-index: 3; left: 50%; top: 50%; font-size: 30px; pointer-events: none; opacity: 0; }
+      .rocket.go { animation: launch 1.6s ease-in forwards; }
+      .orb.pulse { animation: pulse .6s ease; }
+      .hint { position: absolute; bottom: 14px; z-index: 2; color: var(--muted); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
+      @keyframes spin { to { transform: rotate(360deg); } }
+      @keyframes pulse { 50% { transform: scale(1.18); box-shadow: 0 0 140px rgba(255,138,76,.7); } }
+      @keyframes launch { 0% { opacity: 1; transform: translate(-50%, -50%) rotate(45deg) scale(.7); } 100% { opacity: 0; transform: translate(150px, -260px) rotate(45deg) scale(1.3); } }
+      .float-card { position: absolute; z-index: 2; padding: 13px 15px; border: 1px solid var(--line); border-radius: 10px; background: rgba(14,20,40,.88); box-shadow: 0 15px 45px rgba(0,0,0,.22); backdrop-filter: blur(12px); }
       .float-card small { display: block; margin-bottom: 4px; color: var(--muted); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
       .float-card strong { font-size: 13px; }
       .card-top { top: 60px; right: 27px; }
@@ -118,7 +135,7 @@
       .section-heading p { max-width: 340px; margin: 0 0 4px; color: var(--muted); font-size: 14px; line-height: 1.75; }
       .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
       .feature { min-height: 205px; padding: 25px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
-      .feature-icon { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid rgba(198,243,107,.25); border-radius: 9px; color: var(--accent); font-size: 17px; }
+      .feature-icon { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid rgba(127,214,255,.25); border-radius: 9px; color: var(--accent); font-size: 17px; }
       .feature h3 { margin: 24px 0 9px; font-size: 16px; letter-spacing: -.02em; }
       .feature p { max-width: 270px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
 
@@ -130,9 +147,9 @@
         gap: 30px;
         margin: 4px auto 82px;
         padding: 39px 43px;
-        border: 1px solid rgba(198,243,107,.22);
+        border: 1px solid rgba(127,214,255,.22);
         border-radius: 12px;
-        background: radial-gradient(ellipse at 15% 50%, rgba(198,243,107,.1), transparent 58%), #171c1c;
+        background: radial-gradient(ellipse at 15% 50%, rgba(127,214,255,.1), transparent 58%), #0b1124;
         text-align: center;
       }
 
@@ -143,7 +160,10 @@
       footer a:hover { color: var(--accent); }
 
       @media (max-width: 760px) {
-        .shell { width: min(100% - 36px, 550px); }
+        #starfield { position: fixed; inset: 0; z-index: 0; width: 100%; height: 100%; pointer-events: none; }
+      .topbar, main, footer { position: relative; z-index: 1; }
+
+      .shell { width: min(100% - 36px, 550px); }
         .topbar { height: 70px; }
         .nav-links { gap: 17px; }
         .nav-links a:not(.button) { display: none; }
@@ -160,89 +180,150 @@
       }
 
       @media (prefers-reduced-motion: reduce) {
-        *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+        *, *::before, *::after { animation: none !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
       }
     </style>
   </head>
   <body>
+    <canvas id="starfield" aria-hidden="true"></canvas>
     <header class="shell topbar">
       <a class="brand" href="#inicio" aria-label="Hackathon — início">
-        <span class="brand-mark" aria-hidden="true">✳</span>
+        <span class="brand-mark" aria-hidden="true">🚀</span>
         <span>HACKATHON<span style="color: var(--accent)">.</span></span>
       </a>
       <nav class="nav-links" aria-label="Navegação principal">
-        <a href="#sobre">Sobre</a>
-        <a href="#experiencia">Experiência</a>
-        <a class="button" href="#participar">Vamos conversar <span class="arrow" aria-hidden="true">↗</span></a>
+        <a href="#sobre">Missão</a>
+        <a href="#experiencia">Jornada</a>
+        <a class="button" href="#participar">Iniciar contagem <span class="arrow" aria-hidden="true">↗</span></a>
       </nav>
     </header>
 
     <main>
       <section class="shell hero" id="inicio">
         <div>
-          <span class="eyebrow">Criatividade em modo intensivo</span>
-          <h1>Boas ideias<br>não ficam <span>paradas.</span></h1>
-          <p class="hero-copy">Um espaço para imaginar possibilidades, construir junto e transformar ideias em algo que faz a diferença.</p>
+          <span class="eyebrow">Missão de exploração espacial</span>
+          <h1>Explore o<br>universo além <span>do horizonte.</span></h1>
+          <p class="hero-copy">Prepare-se para decolar. Cruze órbitas, descubra novos mundos e vá aonde ninguém foi antes.</p>
           <div class="hero-actions">
-            <a class="button" href="#participar">Descubra a experiência <span class="arrow" aria-hidden="true">↗</span></a>
-            <a class="button button-outline" href="#sobre">Saiba mais</a>
+            <a class="button" href="#participar">Decolar agora <span class="arrow" aria-hidden="true">↗</span></a>
+            <a class="button button-outline" href="#sobre">Ver a missão</a>
           </div>
-          <div class="social-proof" aria-label="Criatividade, colaboração e impacto">
+          <div class="social-proof" aria-label="Tripulação, curiosidade e descoberta">
             <div class="avatars" aria-hidden="true">
-              <span class="avatar">CR</span><span class="avatar">IDE</span><span class="avatar">+1</span>
+              <span class="avatar">🛰</span><span class="avatar">🪐</span><span class="avatar">+∞</span>
             </div>
-            <span>Gente curiosa. Ideias sem limites.</span>
+            <span>Tripulação curiosa. Universo sem limites.</span>
           </div>
         </div>
 
-        <div class="visual" aria-label="Ilustração abstrata representando uma ideia criativa">
-          <span class="spark spark-one" aria-hidden="true">✳</span>
+        <div class="visual" aria-label="Planeta com órbitas e luas. Clique no planeta para lançar um foguete">
+          <span class="spark spark-one" aria-hidden="true">✦</span>
           <span class="spark spark-two" aria-hidden="true">✦</span>
-          <div class="float-card card-top"><small>Começa com</small><strong>uma ideia ✨</strong></div>
-          <div class="orb" aria-hidden="true">✳</div>
-          <div class="float-card card-bottom"><small>Feito em conjunto</small><strong>Melhor ainda ↗</strong></div>
+          <div class="float-card card-top"><small>Destino</small><strong>Além da órbita ✨</strong></div>
+          <div class="orbit" aria-hidden="true"><span class="moon"></span></div>
+          <div class="orbit orbit-small" aria-hidden="true"><span class="moon"></span></div>
+          <button class="orb" id="planet" type="button" aria-label="Lançar foguete"></button>
+          <span class="rocket" id="rocket" aria-hidden="true">🚀</span>
+          <div class="float-card card-bottom"><small>Rumo ao</small><strong>Desconhecido ↗</strong></div>
+          <span class="hint">Clique no planeta</span>
         </div>
       </section>
 
       <section class="shell section" id="sobre">
         <div class="section-heading">
           <div>
-            <span class="eyebrow">Mais que um evento</span>
-            <h2>Ideias grandes começam com pessoas.</h2>
+            <span class="eyebrow">Rota traçada</span>
+            <h2>Grandes descobertas começam com um salto.</h2>
           </div>
-          <p>Junte diferentes perspectivas, coloque a mão na massa e descubra até onde uma boa colaboração pode chegar.</p>
+          <p>Olhe para as estrelas, trace a rota e descubra até onde a curiosidade pode nos levar.</p>
         </div>
         <div class="features" id="experiencia">
           <article class="feature">
             <div class="feature-icon" aria-hidden="true">◎</div>
-            <h3>Espaço para imaginar</h3>
-            <p>Um convite para questionar o óbvio e enxergar novos caminhos.</p>
+            <h3>Horizontes infinitos</h3>
+            <p>Um convite para olhar além e enxergar novos mundos.</p>
           </article>
           <article class="feature">
             <div class="feature-icon" aria-hidden="true">↗</div>
-            <h3>Construção colaborativa</h3>
-            <p>Ideias melhores nascem quando diferentes talentos se encontram.</p>
+            <h3>Tripulação unida</h3>
+            <p>Grandes jornadas se fazem com muitas mãos.</p>
           </article>
           <article class="feature">
-            <div class="feature-icon" aria-hidden="true">✳</div>
-            <h3>Impacto de verdade</h3>
-            <p>Transforme boas conversas em soluções que podem ir além.</p>
+            <div class="feature-icon" aria-hidden="true">✦</div>
+            <h3>Rumo ao desconhecido</h3>
+            <p>Cada descoberta abre caminho para a próxima.</p>
           </article>
         </div>
       </section>
 
       <section class="shell cta" id="participar">
         <div class="cta-content">
-          <h2>O próximo passo começa com você.</h2>
-          <p>Traga sua curiosidade. O resto a gente constrói junto.</p>
+          <h2>A contagem regressiva começou.</h2>
+          <p>Embarque. O universo está esperando.</p>
         </div>
-        <a class="button" href="https://github.com/nicholas1301/teste-hackathon">Conheça o projeto <span class="arrow" aria-hidden="true">↗</span></a>
+        <a class="button" href="https://github.com/nicholas1301/teste-hackathon">Embarcar <span class="arrow" aria-hidden="true">↗</span></a>
       </section>
     </main>
 
     <footer class="shell">
-      <span>© 2026 Hackathon. Feito para tirar ideias do papel.</span>
+      <span>© 2026 Hackathon. Feito para explorar o universo.</span>
       <a href="#inicio">Voltar ao topo ↑</a>
     </footer>
+    <script>
+      (function () {
+        var canvas = document.getElementById("starfield");
+        var ctx = canvas.getContext("2d");
+        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var stars = [], w, h, mx = 0, my = 0, tx = 0, ty = 0, scrollY = 0;
+
+        function resize() {
+          var dpr = window.devicePixelRatio || 1;
+          w = window.innerWidth; h = window.innerHeight;
+          canvas.width = w * dpr; canvas.height = h * dpr;
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+          var count = Math.round(w * h / 5500);
+          stars = [];
+          for (var i = 0; i < count; i++) {
+            stars.push({ x: Math.random() * w, y: Math.random() * h, z: Math.random() * 0.9 + 0.1, p: Math.random() * 6.28 });
+          }
+        }
+
+        function draw(t) {
+          mx += (tx - mx) * 0.05; my += (ty - my) * 0.05;
+          ctx.clearRect(0, 0, w, h);
+          for (var i = 0; i < stars.length; i++) {
+            var s = stars[i];
+            var x = ((s.x - mx * 40 * s.z) % w + w) % w;
+            var y = ((s.y - my * 40 * s.z - scrollY * 0.15 * s.z) % h + h) % h;
+            var a = reduce ? 0.8 : 0.45 + 0.45 * Math.sin(t / 700 + s.p);
+            ctx.globalAlpha = a * (0.4 + s.z * 0.6);
+            ctx.fillStyle = "#eef2ff";
+            ctx.beginPath();
+            ctx.arc(x, y, s.z * 1.5, 0, 6.283);
+            ctx.fill();
+          }
+          if (!reduce) requestAnimationFrame(draw);
+        }
+
+        window.addEventListener("resize", function () { resize(); if (reduce) draw(0); });
+        window.addEventListener("scroll", function () { scrollY = window.scrollY; if (reduce) draw(0); }, { passive: true });
+        window.addEventListener("mousemove", function (e) {
+          tx = e.clientX / w - 0.5; ty = e.clientY / h - 0.5;
+        });
+        resize();
+        requestAnimationFrame(draw);
+
+        var planet = document.getElementById("planet");
+        var rocket = document.getElementById("rocket");
+        planet.addEventListener("click", function () {
+          [planet, rocket].forEach(function (el) {
+            el.classList.remove(el === rocket ? "go" : "pulse");
+            void el.offsetWidth;
+          });
+          planet.classList.add("pulse");
+          rocket.classList.add("go");
+        });
+      })();
+    </script>
   </body>
 </html>

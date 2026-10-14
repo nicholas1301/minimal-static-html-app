@@ -3,12 +3,243 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Minha página</title>
+    <meta name="theme-color" content="#101315">
+    <meta name="description" content="Uma experiência para transformar boas ideias em projetos que fazem a diferença.">
+    <title>Hackathon — Ideias em movimento</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --background: #101315;
+        --surface: #191e20;
+        --text: #f2f2eb;
+        --muted: #a5ada8;
+        --accent: #c6f36b;
+        --line: rgba(242, 242, 235, .14);
+      }
+
+      * { box-sizing: border-box; }
+
+      html { scroll-behavior: smooth; }
+
+      body {
+        margin: 0;
+        background: var(--background);
+        color: var(--text);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a { color: inherit; text-decoration: none; }
+
+      .shell { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
+
+      .topbar {
+        height: 82px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .brand { display: inline-flex; align-items: center; gap: 11px; font-size: 15px; font-weight: 750; letter-spacing: -.03em; }
+      .brand-mark { display: grid; width: 30px; height: 30px; place-items: center; border-radius: 9px; background: var(--accent); color: var(--background); font-size: 19px; }
+      .nav-links { display: flex; align-items: center; gap: 34px; color: var(--muted); font-size: 13px; }
+      .nav-links a:hover { color: var(--text); }
+
+      .button {
+        display: inline-flex;
+        min-height: 46px;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 0 19px;
+        border: 1px solid var(--accent);
+        border-radius: 7px;
+        background: var(--accent);
+        color: var(--background);
+        font-size: 13px;
+        font-weight: 750;
+        transition: transform .2s ease, background .2s ease;
+      }
+
+      .button:hover { transform: translateY(-2px); background: #d5ff83; }
+      .button .arrow { font-size: 17px; }
+      .button-outline { background: transparent; color: var(--text); border-color: var(--line); }
+      .button-outline:hover { background: var(--surface); }
+
+      .hero {
+        min-height: 590px;
+        display: grid;
+        grid-template-columns: 1.12fr .88fr;
+        align-items: center;
+        gap: 45px;
+        padding: 74px 0 85px;
+      }
+
+      .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--accent); font-size: 11px; font-weight: 750; letter-spacing: .14em; text-transform: uppercase; }
+      .eyebrow::before { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); content: ""; box-shadow: 0 0 16px var(--accent); }
+      h1 { max-width: 660px; margin: 23px 0 19px; font-size: clamp(51px, 7vw, 82px); line-height: .99; letter-spacing: -.075em; }
+      h1 span { color: var(--accent); }
+      .hero-copy { max-width: 465px; margin: 0; color: var(--muted); font-size: 16px; line-height: 1.8; }
+      .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 31px; }
+      .social-proof { display: flex; align-items: center; gap: 13px; margin-top: 38px; color: var(--muted); font-size: 12px; }
+      .avatars { display: flex; padding-left: 4px; }
+      .avatar { width: 28px; height: 28px; margin-left: -4px; display: grid; place-items: center; border: 2px solid var(--background); border-radius: 50%; background: #354334; color: var(--accent); font-size: 9px; font-weight: 800; }
+
+      .visual {
+        position: relative;
+        min-height: 390px;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background:
+          radial-gradient(ellipse at 55% 45%, rgba(198, 243, 107, .13), transparent 43%),
+          linear-gradient(145deg, #1a2020, #131718 70%);
+      }
+
+      .visual::before, .visual::after { position: absolute; border: 1px solid rgba(198, 243, 107, .18); border-radius: 50%; content: ""; }
+      .visual::before { width: 290px; height: 290px; }
+      .visual::after { width: 210px; height: 210px; }
+      .orb { position: relative; z-index: 1; width: 126px; height: 126px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.45); border-radius: 35px; background: linear-gradient(145deg, #d7ff8b, #9dc849); box-shadow: 0 0 90px rgba(198,243,107,.25), inset 0 1px 1px rgba(255,255,255,.8); color: #182016; font-size: 54px; transform: rotate(-9deg); }
+      .float-card { position: absolute; z-index: 2; padding: 13px 15px; border: 1px solid var(--line); border-radius: 10px; background: rgba(25,30,32,.88); box-shadow: 0 15px 45px rgba(0,0,0,.22); backdrop-filter: blur(12px); }
+      .float-card small { display: block; margin-bottom: 4px; color: var(--muted); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
+      .float-card strong { font-size: 13px; }
+      .card-top { top: 60px; right: 27px; }
+      .card-bottom { bottom: 56px; left: 25px; }
+      .spark { position: absolute; color: var(--accent); font-size: 25px; }
+      .spark-one { top: 116px; left: 64px; }
+      .spark-two { right: 69px; bottom: 118px; font-size: 15px; }
+
+      .section { padding: 83px 0; border-top: 1px solid var(--line); }
+      .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 38px; }
+      .section-heading h2 { max-width: 480px; margin: 13px 0 0; font-size: clamp(31px, 4vw, 45px); line-height: 1.1; letter-spacing: -.055em; }
+      .section-heading p { max-width: 340px; margin: 0 0 4px; color: var(--muted); font-size: 14px; line-height: 1.75; }
+      .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+      .feature { min-height: 205px; padding: 25px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+      .feature-icon { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid rgba(198,243,107,.25); border-radius: 9px; color: var(--accent); font-size: 17px; }
+      .feature h3 { margin: 24px 0 9px; font-size: 16px; letter-spacing: -.02em; }
+      .feature p { max-width: 270px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
+
+      .cta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 30px;
+        margin: 4px 0 82px;
+        padding: 39px 43px;
+        border: 1px solid rgba(198,243,107,.22);
+        border-radius: 12px;
+        background: radial-gradient(ellipse at 15% 50%, rgba(198,243,107,.1), transparent 58%), #171c1c;
+      }
+
+      .cta h2 { margin: 0 0 8px; font-size: clamp(25px, 3vw, 34px); letter-spacing: -.05em; }
+      .cta p { margin: 0; color: var(--muted); font-size: 13px; }
+      footer { display: flex; justify-content: space-between; gap: 20px; padding: 24px 0 29px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; }
+      footer a:hover { color: var(--accent); }
+
+      @media (max-width: 760px) {
+        .shell { width: min(100% - 36px, 550px); }
+        .topbar { height: 70px; }
+        .nav-links { gap: 17px; }
+        .nav-links a:not(.button) { display: none; }
+        .nav-links .button { min-height: 40px; padding: 0 13px; font-size: 11px; }
+        .hero { min-height: auto; grid-template-columns: 1fr; gap: 42px; padding: 76px 0 65px; }
+        .hero-copy { font-size: 14px; }
+        .visual { min-height: 335px; }
+        .section { padding: 65px 0; }
+        .section-heading { align-items: start; flex-direction: column; gap: 13px; margin-bottom: 25px; }
+        .features { grid-template-columns: 1fr; }
+        .feature { min-height: auto; }
+        .feature h3 { margin-top: 18px; }
+        .cta { align-items: start; flex-direction: column; margin-bottom: 58px; padding: 27px 24px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+      }
+    </style>
   </head>
   <body>
+    <header class="shell topbar">
+      <a class="brand" href="#inicio" aria-label="Hackathon — início">
+        <span class="brand-mark" aria-hidden="true">✳</span>
+        <span>HACKATHON<span style="color: var(--accent)">.</span></span>
+      </a>
+      <nav class="nav-links" aria-label="Navegação principal">
+        <a href="#sobre">Sobre</a>
+        <a href="#experiencia">Experiência</a>
+        <a class="button" href="#participar">Vamos conversar <span class="arrow" aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+
     <main>
-      <h1>Olá, mundo!</h1>
-      <p>Uma aplicação web estática em HTML.</p>
+      <section class="shell hero" id="inicio">
+        <div>
+          <span class="eyebrow">Criatividade em modo intensivo</span>
+          <h1>Boas ideias<br>não ficam <span>paradas.</span></h1>
+          <p class="hero-copy">Um espaço para imaginar possibilidades, construir junto e transformar ideias em algo que faz a diferença.</p>
+          <div class="hero-actions">
+            <a class="button" href="#participar">Descubra a experiência <span class="arrow" aria-hidden="true">↗</span></a>
+            <a class="button button-outline" href="#sobre">Saiba mais</a>
+          </div>
+          <div class="social-proof" aria-label="Criatividade, colaboração e impacto">
+            <div class="avatars" aria-hidden="true">
+              <span class="avatar">CR</span><span class="avatar">IDE</span><span class="avatar">+1</span>
+            </div>
+            <span>Gente curiosa. Ideias sem limites.</span>
+          </div>
+        </div>
+
+        <div class="visual" aria-label="Ilustração abstrata representando uma ideia criativa">
+          <span class="spark spark-one" aria-hidden="true">✳</span>
+          <span class="spark spark-two" aria-hidden="true">✦</span>
+          <div class="float-card card-top"><small>Começa com</small><strong>uma ideia ✨</strong></div>
+          <div class="orb" aria-hidden="true">✳</div>
+          <div class="float-card card-bottom"><small>Feito em conjunto</small><strong>Melhor ainda ↗</strong></div>
+        </div>
+      </section>
+
+      <section class="shell section" id="sobre">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">Mais que um evento</span>
+            <h2>Ideias grandes começam com pessoas.</h2>
+          </div>
+          <p>Junte diferentes perspectivas, coloque a mão na massa e descubra até onde uma boa colaboração pode chegar.</p>
+        </div>
+        <div class="features" id="experiencia">
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">◎</div>
+            <h3>Espaço para imaginar</h3>
+            <p>Um convite para questionar o óbvio e enxergar novos caminhos.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">↗</div>
+            <h3>Construção colaborativa</h3>
+            <p>Ideias melhores nascem quando diferentes talentos se encontram.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">✳</div>
+            <h3>Impacto de verdade</h3>
+            <p>Transforme boas conversas em soluções que podem ir além.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="shell cta" id="participar">
+        <div>
+          <h2>O próximo passo começa com você.</h2>
+          <p>Traga sua curiosidade. O resto a gente constrói junto.</p>
+        </div>
+        <a class="button" href="mailto:oi@exemplo.com">Entre em contato <span class="arrow" aria-hidden="true">↗</span></a>
+      </section>
     </main>
+
+    <footer class="shell">
+      <span>© 2026 Hackathon. Feito para tirar ideias do papel.</span>
+      <a href="#inicio">Voltar ao topo ↑</a>
+    </footer>
   </body>
 </html>

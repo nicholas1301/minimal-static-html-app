@@ -1,4 +1,4 @@
-name: Deploy static site to GitHub Pages
+name: Deploy | Teste Hackathon
 
 on:
   push:
@@ -16,6 +16,7 @@ concurrency:
 
 jobs:
   deploy:
+    name: Publicar no GitHub Pages
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

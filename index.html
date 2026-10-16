@@ -1,20 +1,20 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#060914">
-    <meta name="description" content="Explore the unknown. A journey beyond orbit, toward the next horizon.">
-    <title>Hackathon — Exploring the Universe</title>
+    <meta name="theme-color" content="#08090b">
+    <meta name="description" content="Uma estação nos limites do sistema solar prevê acontecimentos antes que eles ocorram.">
+    <title>O que ficou no escuro — Horror espacial</title>
     <style>
       :root {
         color-scheme: dark;
-        --background: #060914;
-        --surface: #0e1428;
-        --text: #eef2ff;
-        --muted: #9aa6c7;
-        --accent: #7fd6ff;
-        --line: rgba(238, 242, 255, .14);
+        --background: #08090b;
+        --surface: #111315;
+        --text: #e8e6e1;
+        --muted: #a09e99;
+        --accent: #b38b80;
+        --line: rgba(232, 230, 225, .14);
       }
 
       * { box-sizing: border-box; }
@@ -23,7 +23,7 @@
 
       body {
         margin: 0;
-        background: radial-gradient(ellipse at 20% 0%, #14204a 0%, transparent 55%), radial-gradient(ellipse at 90% 60%, #2a1450 0%, transparent 50%), var(--background);
+        background: radial-gradient(ellipse at 72% 18%, rgba(91, 46, 42, .24) 0%, transparent 42%), radial-gradient(ellipse at 12% 80%, rgba(55, 58, 57, .15) 0%, transparent 45%), var(--background);
         background-attachment: fixed;
         color: var(--text);
         font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -46,7 +46,7 @@
       }
 
       .brand { display: inline-flex; align-items: center; gap: 11px; font-size: 15px; font-weight: 750; letter-spacing: -.03em; }
-      .brand-mark { display: grid; width: 30px; height: 30px; place-items: center; border-radius: 9px; background: var(--accent); color: var(--background); font-size: 19px; }
+      .brand-mark { display: grid; width: 30px; height: 30px; place-items: center; border: 1px solid var(--line); border-radius: 9px; color: var(--accent); font-size: 17px; }
       .nav-links { display: flex; align-items: center; gap: 34px; color: var(--muted); font-size: 13px; }
       .nav-links a:hover { color: var(--text); }
 
@@ -66,7 +66,7 @@
         transition: transform .2s ease, background .2s ease;
       }
 
-      .button:hover { transform: translateY(-2px); background: #b0e8ff; }
+      .button:hover { transform: translateY(-2px); background: #c9a79c; }
       .button .arrow { font-size: 17px; }
       .button-outline { background: transparent; color: var(--text); border-color: var(--line); }
       .button-outline:hover { background: var(--surface); }
@@ -99,27 +99,27 @@
         border: 1px solid var(--line);
         border-radius: 16px;
         background:
-          radial-gradient(ellipse at 55% 45%, rgba(127, 214, 255, .13), transparent 43%),
-          linear-gradient(145deg, #141b3a, #080c1c 70%);
+          radial-gradient(ellipse at 55% 45%, rgba(179, 139, 128, .1), transparent 43%),
+          linear-gradient(145deg, #1b1a19, #090a0b 70%);
       }
 
-      .visual::before, .visual::after { position: absolute; border: 1px solid rgba(127, 214, 255, .18); border-radius: 50%; content: ""; }
+      .visual::before, .visual::after { position: absolute; border: 1px solid rgba(179, 139, 128, .16); border-radius: 50%; content: ""; }
       .visual::before { width: 290px; height: 290px; }
       .visual::after { width: 210px; height: 210px; }
-      .orb { position: relative; z-index: 1; width: 126px; height: 126px; display: grid; place-items: center; border: 0; border-radius: 50%; background: radial-gradient(circle at 32% 30%, #ffd9a0, #ff8a4c 45%, #7a2a5e 100%); box-shadow: 0 0 90px rgba(255,138,76,.35), inset -14px -10px 26px rgba(20,5,40,.55); cursor: pointer; transition: transform .3s ease; padding: 0; }
+      .orb { position: relative; z-index: 1; width: 126px; height: 126px; display: grid; place-items: center; border: 1px solid rgba(179,139,128,.3); border-radius: 50%; background: radial-gradient(circle at 35% 32%, #373331, #151414 46%, #030303 76%); box-shadow: 0 0 90px rgba(115,67,59,.2), inset -14px -10px 26px rgba(0,0,0,.8); cursor: pointer; transition: transform .3s ease; padding: 0; }
       .orb:hover { transform: scale(1.06); }
-      .orb::after { position: absolute; width: 190px; height: 34px; border: 3px solid rgba(255,217,160,.55); border-radius: 50%; content: ""; transform: rotate(-18deg); }
+      .orb::after { position: absolute; width: 190px; height: 34px; border: 1px solid rgba(179,139,128,.5); border-radius: 50%; content: ""; transform: rotate(-18deg); }
       .orbit { position: absolute; z-index: 1; width: 290px; height: 290px; border-radius: 50%; animation: spin 14s linear infinite; pointer-events: none; }
       .orbit-small { width: 210px; height: 210px; animation-duration: 8s; animation-direction: reverse; }
-      .moon { position: absolute; top: -7px; left: 50%; width: 14px; height: 14px; margin-left: -7px; border-radius: 50%; background: #dfe6ff; box-shadow: 0 0 14px #fff; }
-      .orbit-small .moon { width: 10px; height: 10px; background: var(--accent); box-shadow: 0 0 14px var(--accent); }
-      .rocket { position: absolute; z-index: 3; left: 50%; top: 50%; font-size: 30px; pointer-events: none; opacity: 0; }
+      .moon { position: absolute; top: -7px; left: 50%; width: 7px; height: 7px; margin-left: -4px; border-radius: 50%; background: #d1c9bd; box-shadow: 0 0 12px rgba(209,201,189,.5); }
+      .orbit-small .moon { width: 5px; height: 5px; background: var(--accent); box-shadow: 0 0 12px var(--accent); }
+      .rocket { position: absolute; z-index: 3; left: 50%; top: 50%; color: var(--accent); font-size: 18px; pointer-events: none; opacity: 0; }
       .rocket.go { animation: launch 1.6s ease-in forwards; }
       .orb.pulse { animation: pulse .6s ease; }
       .hint { position: absolute; bottom: 14px; z-index: 2; color: var(--muted); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
       @keyframes spin { to { transform: rotate(360deg); } }
-      @keyframes pulse { 50% { transform: scale(1.18); box-shadow: 0 0 140px rgba(255,138,76,.7); } }
-      @keyframes launch { 0% { opacity: 1; transform: translate(-50%, -50%) rotate(45deg) scale(.7); } 100% { opacity: 0; transform: translate(150px, -260px) rotate(45deg) scale(1.3); } }
+      @keyframes pulse { 50% { transform: scale(1.08); box-shadow: 0 0 120px rgba(115,67,59,.5); } }
+      @keyframes launch { 0% { opacity: 0; transform: translate(-50%, -50%) scale(.7); } 25% { opacity: 1; } 100% { opacity: 0; transform: translate(70px, -125px) scale(1.1); } }
       .float-card { position: absolute; z-index: 2; padding: 13px 15px; border: 1px solid var(--line); border-radius: 10px; background: rgba(14,20,40,.88); box-shadow: 0 15px 45px rgba(0,0,0,.22); backdrop-filter: blur(12px); }
       .float-card small { display: block; margin-bottom: 4px; color: var(--muted); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
       .float-card strong { font-size: 13px; }
@@ -135,7 +135,7 @@
       .section-heading p { max-width: 340px; margin: 0 0 4px; color: var(--muted); font-size: 14px; line-height: 1.75; }
       .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
       .feature { min-height: 205px; padding: 25px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
-      .feature-icon { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid rgba(127,214,255,.25); border-radius: 9px; color: var(--accent); font-size: 17px; }
+      .feature-icon { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid rgba(179,139,128,.25); border-radius: 9px; color: var(--accent); font-size: 17px; }
       .feature h3 { margin: 24px 0 9px; font-size: 16px; letter-spacing: -.02em; }
       .feature p { max-width: 270px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
 
@@ -147,9 +147,9 @@
         gap: 30px;
         margin: 4px auto 82px;
         padding: 39px 43px;
-        border: 1px solid rgba(127,214,255,.22);
+        border: 1px solid rgba(179,139,128,.22);
         border-radius: 12px;
-        background: radial-gradient(ellipse at 15% 50%, rgba(127,214,255,.1), transparent 58%), #0b1124;
+        background: radial-gradient(ellipse at 15% 50%, rgba(179,139,128,.09), transparent 58%), #101112;
         text-align: center;
       }
 
@@ -187,88 +187,88 @@
   <body>
     <canvas id="starfield" aria-hidden="true"></canvas>
     <header class="shell topbar">
-      <a class="brand" href="#inicio" aria-label="Hackathon — home">
-        <span class="brand-mark" aria-hidden="true">🚀</span>
-        <span>HACKATHON<span style="color: var(--accent)">.</span></span>
+      <a class="brand" href="#inicio" aria-label="O que ficou no escuro — início">
+        <span class="brand-mark" aria-hidden="true">∅</span>
+        <span>ARQUIVO 09<span style="color: var(--accent)">.</span></span>
       </a>
-      <nav class="nav-links" aria-label="Main navigation">
-        <a href="#sobre">Mission</a>
-        <a href="#experiencia">Journey</a>
-        <a href="solar.html">Solar System 3D</a>
-        <a class="button" href="#participar">Start countdown <span class="arrow" aria-hidden="true">↗</span></a>
+      <nav class="nav-links" aria-label="Navegação principal">
+        <a href="#sobre">O incidente</a>
+        <a href="#experiencia">Registros</a>
+        <a href="solar.html">Sistema Solar 3D</a>
+        <a class="button" href="#participar">Acessar arquivo <span class="arrow" aria-hidden="true">↗</span></a>
       </nav>
     </header>
 
     <main>
       <section class="shell hero" id="inicio">
         <div>
-          <span class="eyebrow">Space exploration mission</span>
-          <h1>Explore the<br>universe beyond <span>the horizon.</span></h1>
-          <p class="hero-copy">Get ready for takeoff. Cross orbits, discover new worlds, and go where no one has gone before.</p>
+          <span class="eyebrow">Registro de incidente · órbita exterior</span>
+          <h1>A estação sabe<br>o que ainda <span>não aconteceu.</span></h1>
+          <p class="hero-copy">A equipe de manutenção chegou para investigar uma sequência de previsões impossíveis. Agora, os registros contradizem as lembranças — e uns aos outros.</p>
           <div class="hero-actions">
-            <a class="button" href="#participar">Launch now <span class="arrow" aria-hidden="true">↗</span></a>
-            <a class="button button-outline" href="#sobre">View mission</a>
+            <a class="button" href="#participar">Ler o arquivo <span class="arrow" aria-hidden="true">↗</span></a>
+            <a class="button button-outline" href="#sobre">Entender o incidente</a>
           </div>
-          <div class="social-proof" aria-label="Crew, curiosity, and discovery">
+          <div class="social-proof" aria-label="Equipe da estação">
             <div class="avatars" aria-hidden="true">
-              <span class="avatar">🛰</span><span class="avatar">🪐</span><span class="avatar">+∞</span>
+              <span class="avatar">01</span><span class="avatar">02</span><span class="avatar">···</span>
             </div>
-            <span>Curious crew. Limitless universe.</span>
+            <span>Último contato: há 11 horas.</span>
           </div>
         </div>
 
-        <div class="visual" aria-label="Planet with orbits and moons. Click the planet to launch a rocket">
+        <div class="visual" aria-label="Anomalia escura cercada por órbitas. Interaja para detectar o sinal">
           <span class="spark spark-one" aria-hidden="true">✦</span>
           <span class="spark spark-two" aria-hidden="true">✦</span>
-          <div class="float-card card-top"><small>Destination</small><strong>Beyond orbit ✨</strong></div>
+          <div class="float-card card-top"><small>Origem do sinal</small><strong>Não identificada</strong></div>
           <div class="orbit" aria-hidden="true"><span class="moon"></span></div>
           <div class="orbit orbit-small" aria-hidden="true"><span class="moon"></span></div>
-          <button class="orb" id="planet" type="button" aria-label="Launch rocket"></button>
-          <span class="rocket" id="rocket" aria-hidden="true">🚀</span>
-          <div class="float-card card-bottom"><small>Heading into</small><strong>The unknown ↗</strong></div>
-          <span class="hint">Click the planet</span>
+          <button class="orb" id="planet" type="button" aria-label="Detectar sinal"></button>
+          <span class="rocket" id="rocket" aria-hidden="true">∅</span>
+          <div class="float-card card-bottom"><small>Último pacote</small><strong>Recebido amanhã</strong></div>
+          <span class="hint">Interaja com a anomalia</span>
         </div>
       </section>
 
       <section class="shell section" id="sobre">
         <div class="section-heading">
           <div>
-            <span class="eyebrow">Course plotted</span>
-            <h2>Great discoveries begin with a leap.</h2>
+            <span class="eyebrow">Transcrição parcial</span>
+            <h2>Ninguém se lembra de ter enviado este registro.</h2>
           </div>
-          <p>Look to the stars, chart your course, and discover how far curiosity can take us.</p>
+          <p>Três anotações recuperadas da estação. Os horários não fazem sentido. As assinaturas, sim.</p>
         </div>
         <div class="features" id="experiencia">
           <article class="feature">
-            <div class="feature-icon" aria-hidden="true">◎</div>
-            <h3>Infinite horizons</h3>
-            <p>An invitation to look beyond and see new worlds.</p>
+            <div class="feature-icon" aria-hidden="true">01</div>
+            <h3>Previsão</h3>
+            <p>Às 03:17, o sistema registrou uma falha de energia. A falha aconteceu às 03:24.</p>
           </article>
           <article class="feature">
-            <div class="feature-icon" aria-hidden="true">↗</div>
-            <h3>United crew</h3>
-            <p>Great journeys are made by many hands.</p>
+            <div class="feature-icon" aria-hidden="true">02</div>
+            <h3>Contradição</h3>
+            <p>O relatório foi escrito por alguém que, segundo a escala, estava dormindo.</p>
           </article>
           <article class="feature">
-            <div class="feature-icon" aria-hidden="true">✦</div>
-            <h3>Into the unknown</h3>
-            <p>Every discovery paves the way for the next.</p>
+            <div class="feature-icon" aria-hidden="true">03</div>
+            <h3>Resposta</h3>
+            <p>O próximo pacote de dados traz seu nome. A data de envio é amanhã.</p>
           </article>
         </div>
       </section>
 
       <section class="shell cta" id="participar">
         <div class="cta-content">
-          <h2>The countdown has begun.</h2>
-          <p>Come aboard. The universe is waiting.</p>
+          <h2>O arquivo continua aberto.</h2>
+          <p>O próximo registro ainda não foi escrito. Pelo menos, não por você.</p>
         </div>
-        <a class="button" href="https://github.com/nicholas1301/teste-hackathon">Come aboard <span class="arrow" aria-hidden="true">↗</span></a>
+        <a class="button" href="https://github.com/nicholas1301/teste-hackathon">Acessar o repositório <span class="arrow" aria-hidden="true">↗</span></a>
       </section>
     </main>
 
     <footer class="shell">
-      <span>© 2026 Hackathon. Made to explore the universe.</span>
-      <a href="#inicio">Back to top ↑</a>
+      <span>© 2026 Arquivo 09. Registro classificado.</span>
+      <a href="#inicio">Voltar ao início ↑</a>
     </footer>
     <script>
       (function () {
